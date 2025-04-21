@@ -1,9 +1,10 @@
 import "./App.css";
+import Header from "./components/header";
 
 function App() {
   return (
-    <div>
-      <h1>Inicializando projeto</h1>
+    <div className="bg-zinc-800 w-screen h-screen">
+      <Header />
     </div>
   );
 }
