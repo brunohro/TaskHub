@@ -8,7 +8,7 @@ function Header() {
         <img src="/vite.svg" alt="" />
         <h1
           onClick={() => navigate("/")}
-          className="text-white text-start font-bold text-xl py-6"
+          className="text-white text-start font-bold text-2xl py-6"
         >
           TaskHub
         </h1>

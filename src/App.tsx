@@ -1,49 +1,47 @@
-// import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./App.css";
-// import { uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 import Header from "./components/header";
+import Task from "./components/Task";
 
-// type Task = {
-//   id: uuidv4;
-//   title: string;
-//   category: string;
-//   isCompleted: boolean;
-// };
+type Task = {
+  id: string;
+  title: string;
+  category: string;
+  isCompleted: boolean;
+};
 
 function App() {
-  const navigate = useNavigate();
-  // const [task, setTask] = useState<Task[]>([
-  //   {
-  //     id: uuidv4,
-  //     title: "Estudar React",
-  //     category: "Estudos",
-  //     isCompleted: false,
-  //   },
-  //   {
-  //     id: uuidv4,
-  //     title: "Estudar React2",
-  //     category: "Estudos",
-  //     isCompleted: false,
-  //   },
-  //   {
-  //     id: uuidv4,
-  //     title: "Estudar React3",
-  //     category: "Estudos",
-  //     isCompleted: false,
-  //   },
-  // ]);
+  const [task] = useState<Task[]>(() => {
+    const stored = localStorage.getItem("task");
+    try {
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("task", JSON.stringify(task));
+  }, [task]);
+
+  // const onAddTaskSubmit = (
+  //   title: string,
+  //   category: string,
+  //   isCompleted: boolean
+  // ) => {
+  //   const newTask = {
+  //     id: uuidv4(),
+  //     title,
+  //     category,
+  //     isCompleted,
+  //   };
+  //   setTask((prevTasks) => [...prevTasks, newTask]);
+  // };
   return (
     <div className="bg-zinc-800 w-screen h-screen">
       <Header />
-      <div className="flex justify-center mt-8">
-        <button
-          onClick={() => navigate("/newTask")}
-          className="bg-white w-24 text-blue-600 font-semibold text-sm px-4 py-1 rounded-md border border-white hover:bg-gray-100 transition"
-        >
-          Minhas tarefas
-        </button>
-      </div>
+      <Task tasks={task} />
     </div>
   );
 }
