@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Pencil, Trash2 } from "lucide-react";
 
@@ -43,21 +43,89 @@ type TaskListProps = {
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, onDelete }) => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("Todas");
+  const [statusFilter, setStatusFilter] = useState("Todos");
+
+  const filteredTasks = tasks.filter((task) => {
+    const matchesSearch = task.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    const matchesCategory =
+      categoryFilter === "Todas" || task.category === categoryFilter;
+
+    const matchesStatus =
+      statusFilter === "Todos" || task.status === statusFilter;
+
+    return matchesSearch && matchesCategory && matchesStatus;
+  });
 
   return (
     <div className="p-6 mt-8 mb-8">
       <div className="text-center mb-8">
-        <div className="text-white text-2xl font-extrabold text-center mb-6">
+        <div className="text-white text-2xl font-extrabold text-center mb-4">
           🏋️ MINHAS TAREFAS
         </div>
-        <div className="w-16 h-1 bg-purple-400 mx-auto mt-2 rounded-full animate-pulse" />
+        <div className="w-16 h-1 bg-purple-400 mx-auto rounded-full animate-pulse" />
+      </div>
+      <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-2 mb-6 justify-between">
+        <input
+          type="text"
+          placeholder="Pesquisar por título..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full sm:w-1/3 p-2 rounded bg-zinc-700 border border-zinc-600 text-white"
+        />
+
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="w-full sm:w-1/3 p-2 rounded bg-zinc-700 border border-zinc-600 text-white"
+        >
+          <option value="Todas">Todas as Categorias</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Estudos">Estudos</option>
+          <option value="Casa">Casa</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Saúde">Saúde</option>
+          <option value="Financeiro">Financeiro</option>
+          <option value="Projetos">Projetos</option>
+          <option value="Pessoal">Pessoal</option>
+          <option value="Compras">Compras</option>
+          <option value="Manutenção">Manutenção</option>
+          <option value="Eventos">Eventos</option>
+          <option value="Viagens">Viagens</option>
+          <option value="Organização">Organização</option>
+          <option value="Social">Social</option>
+          <option value="Tecnologia">Tecnologia</option>
+          <option value="Desenvolvimento Pessoal">
+            Desenvolvimento Pessoal
+          </option>
+          <option value="Administração">Administração</option>
+          <option value="Reuniões">Reuniões</option>
+          <option value="Projetos Criativos">Projetos Criativos</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Outros">Outros</option>
+        </select>
+
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="w-full sm:w-1/3 p-2 rounded bg-zinc-700 border border-zinc-600 text-white"
+        >
+          <option value="Todos">Todos os Status</option>
+          <option value="Pendente">Pendente</option>
+          <option value="Em andamento">Em andamento</option>
+          <option value="Concluída">Concluída</option>
+        </select>
       </div>
 
       <div className="max-w-md flex flex-col gap-4 mx-auto">
-        {tasks.length === 0 ? (
-          <p className="text-center text-gray-400">Nenhuma tarefa cadastrada</p>
+        {filteredTasks.length === 0 ? (
+          <p className="text-center text-gray-400">Nenhuma tarefa encontrada</p>
         ) : (
-          tasks.map((task) => (
+          filteredTasks.map((task) => (
             <div
               key={task.id}
               className="bg-white p-4 rounded-lg shadow-md border-l-4 transition-all hover:scale-[1.02] hover:shadow-lg border-purple-700 flex flex-col gap-2"
@@ -67,12 +135,11 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDelete }) => {
                   {task.title}
                 </h3>
                 <span
-                  className={`text-sm font-semibold px-2 py-1 rounded-md 
-    ${
-      task.status === "Concluída"
-        ? "bg-green-100 text-green-700"
-        : "bg-yellow-100 text-yellow-700"
-    }`}
+                  className={`text-sm font-semibold px-2 py-1 rounded-md ${
+                    task.status === "Concluída"
+                      ? "bg-green-100 text-green-700"
+                      : "bg-yellow-100 text-yellow-700"
+                  }`}
                 >
                   {task.status}
                 </span>
