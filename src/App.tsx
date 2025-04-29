@@ -49,6 +49,27 @@ function App() {
     setTask((prev) => [...prev, newTask]);
   };
 
+  const onEditTaskSubmit = (
+    id: string,
+    title: string,
+    description: string,
+    category: string,
+    priority: priority,
+    status: status
+  ) => {
+    setTask((prev) =>
+      prev.map((t) =>
+        t.id === id
+          ? { ...t, title, description, category, priority, status }
+          : t
+      )
+    );
+  };
+
+  const onDeleteTask = (id: string) => {
+    setTask((prev) => prev.filter((t) => t.id !== id));
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -57,13 +78,29 @@ function App() {
           element={
             <div className="bg-zinc-800 w-screen h-screen">
               <Header />
-              <Task tasks={task} />
+              <Task tasks={task} onDelete={onDeleteTask} />
             </div>
           }
         />
         <Route
           path="/newTask"
-          element={<NewTask onAddTaskSubmit={onAddTaskSubmit} />}
+          element={
+            <NewTask
+              tasks={task}
+              onAddTaskSubmit={onAddTaskSubmit}
+              onEditTaskSubmit={onEditTaskSubmit}
+            />
+          }
+        />
+        <Route
+          path="/edit/:id"
+          element={
+            <NewTask
+              tasks={task}
+              onAddTaskSubmit={onAddTaskSubmit}
+              onEditTaskSubmit={onEditTaskSubmit}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

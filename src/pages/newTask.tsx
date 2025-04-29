@@ -1,9 +1,18 @@
-import { useState, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState, FormEvent } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/header";
 
 type Status = "Pendente" | "Em andamento" | "Concluída";
 type Priority = "Baixa" | "Média" | "Alta";
+
+type Task = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  priority: Priority;
+  status: Status;
+};
 
 type NewTaskProps = {
   onAddTaskSubmit: (
@@ -13,16 +22,42 @@ type NewTaskProps = {
     priority: Priority,
     status: Status
   ) => void;
+  onEditTaskSubmit?: (
+    id: string,
+    title: string,
+    description: string,
+    category: string,
+    priority: Priority,
+    status: Status
+  ) => void;
+  tasks?: Task[];
 };
 
-export default function NewTask({ onAddTaskSubmit }: NewTaskProps) {
+export default function NewTask({
+  onAddTaskSubmit,
+  onEditTaskSubmit,
+  tasks,
+}: NewTaskProps) {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
+  const editingTask = tasks?.find((t) => t.id === id);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [priority, setPriority] = useState<Priority>("Média");
   const [status, setStatus] = useState<Status>("Pendente");
+
+  useEffect(() => {
+    if (editingTask) {
+      setTitle(editingTask.title);
+      setDescription(editingTask.description);
+      setCategory(editingTask.category);
+      setPriority(editingTask.priority);
+      setStatus(editingTask.status);
+    }
+  }, [editingTask]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -32,22 +67,27 @@ export default function NewTask({ onAddTaskSubmit }: NewTaskProps) {
       return;
     }
 
-    onAddTaskSubmit(title, description, category, priority, status);
+    if (editingTask && onEditTaskSubmit) {
+      onEditTaskSubmit(
+        editingTask.id,
+        title,
+        description,
+        category,
+        priority,
+        status
+      );
+    } else {
+      onAddTaskSubmit(title, description, category, priority, status);
+    }
 
-    setTitle("");
-    setDescription("");
-    setCategory("");
-    setPriority("Média");
-    setStatus("Pendente");
-
-    navigate("/"); // volta para a home
+    navigate("/");
   };
 
   return (
     <div className="bg-zinc-800 min-h-screen text-white px-6 pt-4">
       <Header />
       <h2 className="text-2xl font-bold text-center text-blue-400 mb-6">
-        Nova Tarefa
+        {editingTask ? "Editar Tarefa" : "Nova Tarefa"}
       </h2>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
@@ -91,7 +131,7 @@ export default function NewTask({ onAddTaskSubmit }: NewTaskProps) {
           type="submit"
           className="w-full bg-white text-blue-600 font-semibold py-2 rounded hover:bg-gray-100 transition"
         >
-          Adicionar Tarefa
+          {editingTask ? "Salvar Alterações" : "Adicionar Tarefa"}
         </button>
       </form>
     </div>
