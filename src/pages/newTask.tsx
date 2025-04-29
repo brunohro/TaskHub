@@ -5,31 +5,47 @@ import Header from "../components/header";
 type Status = "Pendente" | "Em andamento" | "Concluída";
 type Priority = "Baixa" | "Média" | "Alta";
 
-type Task = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  priority: Priority;
-  status: Status;
-};
+type Category =
+  | "Trabalho"
+  | "Estudos"
+  | "Casa"
+  | "Lazer"
+  | "Saúde"
+  | "Financeiro"
+  | "Projetos"
+  | "Pessoal"
+  | "Compras"
+  | "Manutenção"
+  | "Eventos"
+  | "Viagens"
+  | "Organização"
+  | "Social"
+  | "Tecnologia"
+  | "Desenvolvimento Pessoal"
+  | "Administração"
+  | "Reuniões"
+  | "Projetos Criativos"
+  | "Marketing"
+  | "Outros";
 
 type NewTaskProps = {
   onAddTaskSubmit: (
     title: string,
     description: string,
-    category: string,
+    category: Category,
     priority: Priority,
     status: Status
   ) => void;
+
   onEditTaskSubmit?: (
     id: string,
     title: string,
     description: string,
-    category: string,
+    category: Category,
     priority: Priority,
     status: Status
   ) => void;
+
   tasks?: Task[];
 };
 
@@ -45,7 +61,7 @@ export default function NewTask({
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState<Category>("Outros");
   const [priority, setPriority] = useState<Priority>("Média");
   const [status, setStatus] = useState<Status>("Pendente");
 
@@ -121,18 +137,43 @@ export default function NewTask({
         </div>
         <div>
           <label
-            htmlFor=""
+            htmlFor="category"
             className="block text-sm font-semibold text-gray-300 mb-2"
           >
             Categoria
           </label>
-          <input
+          <select
+            id="category"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="Categoria"
+            onChange={(e) => setCategory(e.target.value as Category)}
             className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
-          />
+          >
+            <option value="Trabalho">Trabalho</option>
+            <option value="Estudos">Estudos</option>
+            <option value="Casa">Casa</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Financeiro">Financeiro</option>
+            <option value="Projetos">Projetos</option>
+            <option value="Pessoal">Pessoal</option>
+            <option value="Compras">Compras</option>
+            <option value="Manutenção">Manutenção</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Viagens">Viagens</option>
+            <option value="Organização">Organização</option>
+            <option value="Social">Social</option>
+            <option value="Tecnologia">Tecnologia</option>
+            <option value="Desenvolvimento Pessoal">
+              Desenvolvimento Pessoal
+            </option>
+            <option value="Administração">Administração</option>
+            <option value="Reuniões">Reuniões</option>
+            <option value="Projetos Criativos">Projetos Criativos</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Outros">Outros</option>
+          </select>
         </div>
+
         <div>
           <label
             htmlFor=""

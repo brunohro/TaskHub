@@ -4,12 +4,34 @@ import { Pencil, Trash2 } from "lucide-react";
 
 type Status = "Pendente" | "Em andamento" | "Concluída";
 type Priority = "Baixa" | "Média" | "Alta";
+type Category =
+  | "Trabalho"
+  | "Estudos"
+  | "Casa"
+  | "Lazer"
+  | "Saúde"
+  | "Financeiro"
+  | "Projetos"
+  | "Pessoal"
+  | "Compras"
+  | "Manutenção"
+  | "Eventos"
+  | "Viagens"
+  | "Organização"
+  | "Social"
+  | "Tecnologia"
+  | "Desenvolvimento Pessoal"
+  | "Administração"
+  | "Reuniões"
+  | "Projetos Criativos"
+  | "Marketing"
+  | "Outros";
 
 type Task = {
   id: string;
   title: string;
   description: string;
-  category: string;
+  category: Category;
   priority: Priority;
   status: Status;
 };

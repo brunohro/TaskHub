@@ -7,12 +7,34 @@ import NewTask from "./pages/newTask";
 
 type status = "Pendente" | "Em andamento" | "Concluída";
 type priority = "Baixa" | "Média" | "Alta";
+type Category =
+  | "Trabalho"
+  | "Estudos"
+  | "Casa"
+  | "Lazer"
+  | "Saúde"
+  | "Financeiro"
+  | "Projetos"
+  | "Pessoal"
+  | "Compras"
+  | "Manutenção"
+  | "Eventos"
+  | "Viagens"
+  | "Organização"
+  | "Social"
+  | "Tecnologia"
+  | "Desenvolvimento Pessoal"
+  | "Administração"
+  | "Reuniões"
+  | "Projetos Criativos"
+  | "Marketing"
+  | "Outros";
 
 type TaskType = {
   id: string;
   title: string;
   description: string;
-  category: string;
+  category: Category;
   priority: priority;
   status: status;
 };
@@ -34,7 +56,7 @@ function App() {
   const onAddTaskSubmit = (
     title: string,
     description: string,
-    category: string,
+    category: Category,
     priority: priority,
     status: status
   ) => {
@@ -53,7 +75,7 @@ function App() {
     id: string,
     title: string,
     description: string,
-    category: string,
+    category: Category,
     priority: priority,
     status: status
   ) => {
