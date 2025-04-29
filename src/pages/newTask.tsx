@@ -91,42 +91,82 @@ export default function NewTask({
       </h2>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Título"
-          className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
-        />
-        <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Descrição"
-          className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
-        />
-        <input
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="Categoria"
-          className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
-        />
-        <select
-          value={priority}
-          onChange={(e) => setPriority(e.target.value as Priority)}
-          className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
-        >
-          <option value="Baixa">Baixa</option>
-          <option value="Média">Média</option>
-          <option value="Alta">Alta</option>
-        </select>
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value as Status)}
-          className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
-        >
-          <option value="Pendente">Pendente</option>
-          <option value="Em andamento">Em andamento</option>
-          <option value="Concluída">Concluída</option>
-        </select>
+        <div>
+          <label
+            htmlFor=""
+            className="block text-sm font-semibold text-gray-300 mb-2"
+          >
+            Título
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Título"
+            className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor=""
+            className="block text-sm font-semibold text-gray-300 mb-2"
+          >
+            Descrição
+          </label>
+          <input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Descrição"
+            className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor=""
+            className="block text-sm font-semibold text-gray-300 mb-2"
+          >
+            Categoria
+          </label>
+          <input
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            placeholder="Categoria"
+            className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor=""
+            className="block text-sm font-semibold text-gray-300 mb-2"
+          >
+            Prioridade
+          </label>
+          <select
+            value={priority}
+            onChange={(e) => setPriority(e.target.value as Priority)}
+            className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
+          >
+            <option value="Baixa">Baixa</option>
+            <option value="Média">Média</option>
+            <option value="Alta">Alta</option>
+          </select>
+        </div>
+        <div>
+          <label
+            htmlFor=""
+            className="block text-sm font-semibold text-gray-300 mb-2"
+          >
+            Status
+          </label>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value as Status)}
+            className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
+          >
+            <option value="Pendente">Pendente</option>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Concluída">Concluída</option>
+          </select>
+        </div>
         <button
           type="submit"
           className="w-full bg-white text-blue-600 font-semibold py-2 rounded hover:bg-gray-100 transition"
