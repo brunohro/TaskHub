@@ -11,7 +11,7 @@ function MenuNav() {
           <a href="#">Histórico</a>
         </div>
         <div className="text-white text-start font-light items-center text-md py-7">
-          <a href="#">Sobre</a>
+          <a href="/Sobre">Sobre</a>
         </div>
       </div>
       <div className="hidden md:flex gap-4">

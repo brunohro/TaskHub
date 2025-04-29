@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "./components/header";
 import Task from "./components/Task";
 import NewTask from "./pages/newTask";
+import Sobre from "./pages/sobre";
 
 type status = "Pendente" | "Em andamento" | "Concluída";
 type priority = "Baixa" | "Média" | "Alta";
@@ -124,6 +125,7 @@ function App() {
             />
           }
         />
+        <Route path="/Sobre" element={<Sobre />} />
       </Routes>
     </BrowserRouter>
   );
