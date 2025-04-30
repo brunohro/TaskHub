@@ -62,12 +62,12 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDelete }) => {
   });
 
   return (
-    <div className="p-6 mt-8 mb-8">
+    <div className="p-6 mt-8">
       <div className="text-center mb-8">
         <div className="text-white text-2xl font-extrabold text-center mb-4">
           🏋️ MINHAS TAREFAS
         </div>
-        <div className="w-16 h-1 bg-purple-400 mx-auto rounded-full animate-pulse" />
+        <div className="w-16 h-1 bg-purple-400 mx-auto rounded-full" />
       </div>
       <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-2 mb-6 justify-between">
         <input

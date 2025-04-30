@@ -112,7 +112,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="bg-zinc-800 w-screen h-screen">
+            <div className="bg-zinc-800 w-screen min-h-screen pb-0 mb-0">
               <Header />
               <Task tasks={task} onDelete={onDeleteTask} />
             </div>

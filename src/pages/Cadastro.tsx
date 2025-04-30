@@ -2,10 +2,10 @@ import Header from "../components/header";
 
 function Cadastro() {
   return (
-    <div className="bg-zinc-800 min-h-screen text-white px-6 pt-4">
+    <div className="bg-zinc-800 min-h-screen text-white px-6 pt-4 pb-4">
       <Header />
       <div className="max-w-md mx-auto bg-zinc-900 items-center my-24 rounded-lg p-8 shadow-2xl shadow-zinc-700">
-        <div className="text-white text-2xl font-extrabold text-center mb-4">
+        <div className="text-white text-2xl font-extrabold text-center">
           PÁGINA DE CADASTRO
         </div>
         <form className="flex flex-col gap-4" action="">
