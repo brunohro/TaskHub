@@ -4,7 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "./components/header";
 import Task from "./components/Task";
 import NewTask from "./pages/newTask";
-import Sobre from "./pages/sobre";
+import Sobre from "./pages/Sobre";
+import Cadastro from "./pages/Cadastro";
+import Login from "./pages/Login";
 
 type status = "Pendente" | "Em andamento" | "Concluída";
 type priority = "Baixa" | "Média" | "Alta";
@@ -53,6 +55,17 @@ function App() {
   useEffect(() => {
     localStorage.setItem("task", JSON.stringify(task));
   }, [task]);
+
+  useEffect(() => {
+    //  armazenando um usuário padrão
+    const userExists = localStorage.getItem("user");
+    if (!userExists) {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ login: "admin", senha: "1234" })
+      );
+    }
+  }, []);
 
   const onAddTaskSubmit = (
     title: string,
@@ -126,6 +139,8 @@ function App() {
           }
         />
         <Route path="/Sobre" element={<Sobre />} />
+        <Route path="/Cadastro" element={<Cadastro />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
