@@ -75,8 +75,8 @@ function Cadastro() {
             Entrar
           </button>
           <div className="flex gap-2">
-            <p className="text-zinc-400">Não tem uma conta ?</p>
-            <a href="/Cadastro"> Cadastre-se aqui</a>
+            <p className="text-zinc-400">Já possui uma conta ?</p>
+            <a href="/Login"> Entre aqui</a>
           </div>
         </form>
       </div>
