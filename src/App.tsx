@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Header from "./components/header";
 import Task from "./components/Task";
 import NewTask from "./pages/newTask";
 import Sobre from "./pages/Sobre";
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
+import Header from "./components/Header";
 
-type status = "Pendente" | "Em andamento" | "Concluída";
-type priority = "Baixa" | "Média" | "Alta";
-type Category =
+export type Status = "Pendente" | "Em andamento" | "Concluída";
+export type Priority = "Baixa" | "Média" | "Alta";
+export type Category =
   | "Trabalho"
   | "Estudos"
   | "Casa"
@@ -33,13 +33,13 @@ type Category =
   | "Marketing"
   | "Outros";
 
-type TaskType = {
+export type TaskType = {
   id: string;
   title: string;
   description: string;
   category: Category;
-  priority: priority;
-  status: status;
+  priority: Priority;
+  status: Status;
 };
 
 function App() {
@@ -71,8 +71,8 @@ function App() {
     title: string,
     description: string,
     category: Category,
-    priority: priority,
-    status: status
+    priority: Priority,
+    status: Status
   ) => {
     const newTask: TaskType = {
       id: uuidv4(),
@@ -90,8 +90,8 @@ function App() {
     title: string,
     description: string,
     category: Category,
-    priority: priority,
-    status: status
+    priority: Priority,
+    status: Status
   ) => {
     setTask((prev) =>
       prev.map((t) =>

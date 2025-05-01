@@ -1,6 +1,14 @@
-import Header from "../components/header";
+import { FormEvent } from "react";
+import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
 
 function Cadastro() {
+  const navigate = useNavigate();
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    alert("Cadastro realizado com sucesso!");
+    navigate("/");
+  };
   return (
     <div className="bg-zinc-800 min-h-screen text-white px-6 pt-4 pb-4">
       <Header />
@@ -8,7 +16,7 @@ function Cadastro() {
         <div className="text-white text-2xl font-extrabold text-center">
           PÁGINA DE CADASTRO
         </div>
-        <form className="flex flex-col gap-4" action="">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4" action="">
           <div>
             <label
               htmlFor=""

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Header from "../components/header";
+import Header from "../components/Header";
 
 function Sobre() {
   return (
@@ -50,8 +50,8 @@ function Sobre() {
               transition={{ duration: 0.4, delay: 0.7 }}
             >
               Nosso foco é fornecer uma interface intuitiva com recursos
-              poderosos como atribuição de tarefas, controle de prazos,
-              notificações e muito mais.
+              poderosos como atribuição de tarefas, controle de prazos e muito
+              mais.
             </motion.p>
 
             <motion.h2
@@ -72,7 +72,6 @@ function Sobre() {
               <li>React + TypeScript</li>
               <li>Tailwind CSS</li>
               <li>Vite</li>
-              <li>Node.js (para backend, se aplicável)</li>
             </motion.ul>
           </div>
         </motion.div>

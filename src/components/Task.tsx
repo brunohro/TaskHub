@@ -1,33 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Pencil, Trash2 } from "lucide-react";
+import { Category, Priority, Status } from "../App";
 
-type Status = "Pendente" | "Em andamento" | "Concluída";
-type Priority = "Baixa" | "Média" | "Alta";
-type Category =
-  | "Trabalho"
-  | "Estudos"
-  | "Casa"
-  | "Lazer"
-  | "Saúde"
-  | "Financeiro"
-  | "Projetos"
-  | "Pessoal"
-  | "Compras"
-  | "Manutenção"
-  | "Eventos"
-  | "Viagens"
-  | "Organização"
-  | "Social"
-  | "Tecnologia"
-  | "Desenvolvimento Pessoal"
-  | "Administração"
-  | "Reuniões"
-  | "Projetos Criativos"
-  | "Marketing"
-  | "Outros";
-
-type Task = {
+export type Task = {
   id: string;
   title: string;
   description: string;

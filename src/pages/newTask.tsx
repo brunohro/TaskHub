@@ -1,32 +1,8 @@
 import { useEffect, useState, FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../components/header";
-
-type Status = "Pendente" | "Em andamento" | "Concluída";
-type Priority = "Baixa" | "Média" | "Alta";
-
-type Category =
-  | "Trabalho"
-  | "Estudos"
-  | "Casa"
-  | "Lazer"
-  | "Saúde"
-  | "Financeiro"
-  | "Projetos"
-  | "Pessoal"
-  | "Compras"
-  | "Manutenção"
-  | "Eventos"
-  | "Viagens"
-  | "Organização"
-  | "Social"
-  | "Tecnologia"
-  | "Desenvolvimento Pessoal"
-  | "Administração"
-  | "Reuniões"
-  | "Projetos Criativos"
-  | "Marketing"
-  | "Outros";
+import { Task } from "../components/Task";
+import { Category, Priority, Status } from "../App";
+import Header from "../components/Header";
 
 type NewTaskProps = {
   onAddTaskSubmit: (
