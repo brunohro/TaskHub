@@ -7,7 +7,7 @@ function MenuNav() {
     <>
       <div className="hidden md:flex gap-4">
         <div className="text-white text-start font-light items-center text-md py-7">
-          <a href="#">Tarefas</a>
+          <a href="/Tarefas">Tarefas</a>
         </div>
         <div className="text-white text-start font-light items-center text-md py-7">
           <a href="#">Histórico</a>
@@ -49,7 +49,7 @@ function MenuNav() {
           </div>
           <nav className="flex-1 px-4 py-6 space-y-4 ">
             <a
-              href="#"
+              href="/Tarefas"
               className="block text-md text-white text-md font-light hover:text-blue-400 transition "
             >
               Tarefas

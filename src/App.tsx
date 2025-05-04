@@ -7,6 +7,7 @@ import Sobre from "./pages/Sobre";
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
 import Header from "./components/Header";
+import Tarefas from "./pages/Tarefas";
 
 export type Status = "Pendente" | "Em andamento" | "Concluída";
 export type Priority = "Baixa" | "Média" | "Alta";
@@ -141,6 +142,7 @@ function App() {
         <Route path="/Sobre" element={<Sobre />} />
         <Route path="/Cadastro" element={<Cadastro />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Tarefas" element={<Tarefas />} />
       </Routes>
     </BrowserRouter>
   );
