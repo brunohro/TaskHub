@@ -10,7 +10,7 @@ function MenuNav() {
           <a href="/Tarefas">Tarefas</a>
         </div>
         <div className="text-white text-start font-light items-center text-md py-7">
-          <a href="#">Histórico</a>
+          <a href="/Historico">Histórico</a>
         </div>
         <div className="text-white text-start font-light items-center text-md py-7">
           <a href="/Sobre">Sobre</a>
@@ -55,7 +55,7 @@ function MenuNav() {
               Tarefas
             </a>
             <a
-              href="#"
+              href="/Historico"
               className="block text-md text-white text-md font-light hover:text-blue-400 transition "
             >
               Histórico
