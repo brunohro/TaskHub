@@ -1,4 +1,4 @@
-import { LogIn, Menu, X } from "lucide-react";
+import { LogIn, Menu, X, ArrowRightToLine } from "lucide-react";
 import { useState } from "react";
 
 function MenuNav() {
@@ -69,9 +69,9 @@ function MenuNav() {
             <div className="p-4 border-t border-zinc-700">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full text-left text-red-400 hover:text-red-600 transition"
+                className="w-full flex text-left text-red-400 hover:text-red-600 transition"
               >
-                Sair
+                <ArrowRightToLine size={24} />
               </button>
             </div>
           </nav>
