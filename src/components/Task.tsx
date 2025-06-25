@@ -130,7 +130,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDelete }) => {
               filteredTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="bg-white p-4 rounded-lg shadow-md border-l-4 transition-all hover:scale-[1.02] hover:shadow-lg border-purple-700 flex flex-col gap-2"
+                  className="bg-white p-4 rounded-lg shadow-md border-l-4 transition-all hover:scale-[1.02] hover:shadow-lg border-purple-700 flex flex-col gap-2 cursor-pointer"
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="text-xl font-bold text-zinc-800">
@@ -149,6 +149,10 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDelete }) => {
 
                   <p className="text-sm text-zinc-600 italic">
                     Categoria: {task.category}
+                  </p>
+
+                  <p className="text-sm text-zinc-600 italic">
+                    {task.description}
                   </p>
 
                   <div className="flex gap-2 justify-end mt-2">
