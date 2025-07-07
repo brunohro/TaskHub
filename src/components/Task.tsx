@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Pencil, Trash2 } from "lucide-react";
-import { Category, Priority, Status } from "../App";
+import { Category, Priority, Status, Semana } from "../App";
 import { motion } from "framer-motion";
 
 export type Task = {
@@ -11,6 +11,7 @@ export type Task = {
   category: Category;
   priority: Priority;
   status: Status;
+  semana: Semana;
 };
 
 type TaskListProps = {
@@ -132,6 +133,9 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDelete }) => {
                   key={task.id}
                   className="bg-white p-4 rounded-lg shadow-md border-l-4 transition-all hover:scale-[1.02] hover:shadow-lg border-purple-700 flex flex-col gap-2 cursor-pointer"
                 >
+                  <h3 className="text-xl font-bold text-zinc-800">
+                    {task.semana}
+                  </h3>
                   <div className="flex justify-between items-center">
                     <h3 className="text-xl font-bold text-zinc-800">
                       {task.title}

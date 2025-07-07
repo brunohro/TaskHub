@@ -1,7 +1,7 @@
 import { useEffect, useState, FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Task } from "../components/Task";
-import { Category, Priority, Status } from "../App";
+import { Category, Priority, Status, Semana } from "../App";
 import Header from "../components/Header";
 
 type NewTaskProps = {
@@ -10,7 +10,8 @@ type NewTaskProps = {
     description: string,
     category: Category,
     priority: Priority,
-    status: Status
+    status: Status,
+    semana: Semana
   ) => void;
 
   onEditTaskSubmit?: (
@@ -19,7 +20,8 @@ type NewTaskProps = {
     description: string,
     category: Category,
     priority: Priority,
-    status: Status
+    status: Status,
+    semana: Semana
   ) => void;
 
   tasks?: Task[];
@@ -40,6 +42,7 @@ export default function NewTask({
   const [category, setCategory] = useState<Category>("Outros");
   const [priority, setPriority] = useState<Priority>("Média");
   const [status, setStatus] = useState<Status>("Pendente");
+  const [semana, setSemana] = useState<Semana>("Segunda");
 
   useEffect(() => {
     if (editingTask) {
@@ -48,6 +51,7 @@ export default function NewTask({
       setCategory(editingTask.category);
       setPriority(editingTask.priority);
       setStatus(editingTask.status);
+      setSemana(editingTask.semana);
     }
   }, [editingTask]);
 
@@ -66,10 +70,11 @@ export default function NewTask({
         description,
         category,
         priority,
-        status
+        status,
+        semana
       );
     } else {
-      onAddTaskSubmit(title, description, category, priority, status);
+      onAddTaskSubmit(title, description, category, priority, status, semana);
     }
 
     navigate("/");
@@ -84,6 +89,27 @@ export default function NewTask({
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
         <div>
+          <div>
+            <label
+              htmlFor=""
+              className="block text-sm font-semibold text-gray-300 mb-2"
+            >
+              Dia da Semana
+            </label>
+            <select
+              value={semana}
+              onChange={(e) => setSemana(e.target.value as Semana)}
+              className="w-full p-2 rounded bg-zinc-700 border border-zinc-600"
+            >
+              <option value="Domingo">Domingo</option>
+              <option value="Segunda">Segunda</option>
+              <option value="Terça">Terça</option>
+              <option value="Quarta">Quarta</option>
+              <option value="Quinta">Quinta</option>
+              <option value="Sexta">Sexta</option>
+              <option value="Sábado">Sábado</option>
+            </select>
+          </div>
           <label
             htmlFor=""
             className="block text-sm font-semibold text-gray-300 mb-2"

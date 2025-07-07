@@ -35,6 +35,15 @@ export type Category =
   | "Marketing"
   | "Outros";
 
+export type Semana =
+  | "Segunda"
+  | "Terça"
+  | "Quarta"
+  | "Quinta"
+  | "Sexta"
+  | "Sábado"
+  | "Domingo";
+
 export type TaskType = {
   id: string;
   title: string;
@@ -42,6 +51,7 @@ export type TaskType = {
   category: Category;
   priority: Priority;
   status: Status;
+  semana: Semana;
 };
 
 function App() {
@@ -74,7 +84,8 @@ function App() {
     description: string,
     category: Category,
     priority: Priority,
-    status: Status
+    status: Status,
+    semana: Semana
   ) => {
     const newTask: TaskType = {
       id: uuidv4(),
@@ -83,6 +94,7 @@ function App() {
       category,
       priority,
       status,
+      semana,
     };
     setTask((prev) => [...prev, newTask]);
   };
@@ -93,12 +105,13 @@ function App() {
     description: string,
     category: Category,
     priority: Priority,
-    status: Status
+    status: Status,
+    semana: Semana
   ) => {
     setTask((prev) =>
       prev.map((t) =>
         t.id === id
-          ? { ...t, title, description, category, priority, status }
+          ? { ...t, title, description, category, priority, status, semana }
           : t
       )
     );
